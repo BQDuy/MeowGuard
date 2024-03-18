@@ -1,4 +1,6 @@
 import pygame
+import builtins
+from src.game_phases import gameplay_pause
 
 from src.components.game_status import GameStatus
 from src.config import Config
@@ -17,27 +19,17 @@ def update_game_display():
 
 
 def main():
-    mouse_pos=(0,0)
     while True:
-
         if GlobalState.GAME_STATE == GameStatus.MAIN_MENU:
             main_menu_phase()
         elif GlobalState.GAME_STATE == GameStatus.GAMEPLAY:
-            gameplay_phase()
-            for event in pygame.event.get():
-                # if event.type == pygame.KEYDOWN:
-                #     if event.key == pygame.K_SPACE:
-                #         GlobalState.GAME_STATE = GameStatus.PAUSE_MENU
-                #         pause_menu_phase()
-                if event.type == pygame.MOUSEMOTION:
-                    mouse_pos = event.pos
-            mouse_pos = (min(max(mouse_pos[0], 0), Config.WIDTH), min(max(mouse_pos[1], 0), Config.HEIGHT))
-        # elif GlobalState.GAME_STATE == GameStatus.PAUSE_MENU:
-        #     pause_menu_phase()
+            gameplay_phase() 
+        elif GlobalState.GAME_STATE == GameStatus.PAUSE:
+            gameplay_pause()
+        # elif GlobalState.GAME_STATE == GameStatus.CHANGETHEME:
+        #     changetheme_phase()
         elif GlobalState.GAME_STATE == GameStatus.GAME_END:
             exit_game_phase()
-
-
 
         MusicService.start_background_music()
         update_game_display()

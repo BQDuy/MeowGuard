@@ -51,12 +51,6 @@ class Hand(pygame.sprite.Sprite):
         self.offset_x = random.randint(-50, 120)
         self.new_y = -320
 
-    def _load_back_hand(self):
-        self.image = VisualizationService.get_back_hand_image()
-        self.rect = self.image.get_rect()
-        self.mask = pygame.mask.from_surface(self.image)
-        self.offset_x = random.randint(260, 380)
-        self.new_y = -40
     def _load_right_hand(self):
         self.image = VisualizationService.get_right_hand_image()
         self.rect = self.image.get_rect()
@@ -96,6 +90,7 @@ class Hand(pygame.sprite.Sprite):
                 MusicService.play_chop_sound()
 
             self.can_score = True
+
   #  def move_rules(self):
 
     def draw(self, screen):

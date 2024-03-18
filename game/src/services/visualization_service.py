@@ -51,9 +51,7 @@ class VisualizationService:
     @staticmethod
     def get_press_key_image():
         return pygame.image.load(MENU_DIR / "press_any_key1.png").convert_alpha()
-    @staticmethod
-    def get_back_hand():
-        return pygame.image.load(ASSETS_DIR / "santa_back_hand.png").convert_alpha()
+
     @staticmethod
     def get_title_image():
         return pygame.image.load(MENU_DIR / "title5.png").convert_alpha()
@@ -69,9 +67,6 @@ class VisualizationService:
     @staticmethod
     def get_credit_font_font():
         return pygame.font.Font(ASSETS_DIR / "BaiJamjuree-Bold.ttf", 12)
-    @staticmethod
-    def draw_pause_menu():
-        return pygame.image.load(MENU_DIR / "title.png".convert_alpha())
 
   #  @staticmethod
   #  def get_score_font():
@@ -92,7 +87,7 @@ class VisualizationService:
     def draw_author_credits(screen):
         credit_font = VisualizationService.get_credit_font_font()
         author_credits = credit_font.render("Nhóm 12 LT Python", True, (0, 0, 0))
-        credits_rect = author_credits.get_rect(center=(Config.WIDTH // 2, 700))
+        credits_rect = author_credits.get_rect(center=(Config.WIDTH // 2, 620))
         screen.blit(author_credits, credits_rect)
 
     def draw_best_score(screen, max_score, font_size=20):  # Set a reasonable default font size
@@ -147,6 +142,11 @@ class VisualizationService:
         # Vẽ leftbg và rightbg
         screen.blit(left_bg, (left_bg_x, press_y))
         screen.blit(right_bg, (right_bg_x, press_y))
+      
+    @staticmethod
+    def draw_paused_menu(screen, scrool, press_y):
+        VisualizationService.draw_press_key(screen, press_y)    
+        VisualizationService.draw_background_with_scroll(screen, scrool)
 
     @staticmethod
     def draw_main_menu(screen, max_score, press_y):

@@ -1,10 +1,10 @@
 class Config:
-    FPS = 80
+    FPS = 60
 
     # Screen Information
     WIDTH = 360
-    HEIGHT = 720
+    HEIGHT = 640
 
     # Movement
-    ACC = 1.4
-    FRIC = -0.1
+    ACC = 1.6
+    FRIC = -0.08
